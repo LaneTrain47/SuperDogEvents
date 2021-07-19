@@ -1,0 +1,46 @@
+main>.container {
+    padding: 80px 15px 20px;
+}
+
+.even {
+    font-weight: bold
+}
+
+.iconify {
+    width: 3rem;
+    height: 3rem;
+    margin: 1em;
+}
+
+.color-LinkedInBlue {
+    color: #1163bf
+}
+
+.color-YouTubeRed {
+    color: #ff0a03
+}
+
+.color-TwitterBlue {
+    color: #1da1f3
+}
+
+.color-gitHubPurple {
+    color: #7a319a
+}
+
+.color-CoderFoundryOrange {
+    color: #ff993b
+}
+
+.color-JavaScriptYellow {
+    color: #f7df1e
+}
+
+.background-color {
+    background-color: #f7df1e;
+}
+
+.background-color:hover {
+    background-color: black;
+    color: #f7df1e;
+}
