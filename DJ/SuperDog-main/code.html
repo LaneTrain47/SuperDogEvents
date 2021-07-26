@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+    <title>Super Dog | The Code</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/css/prism.css">
+    <link rel="stylesheet" href="/css/site.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/all.min.css">
+
+    <link href="/img/favicon.png" rel="icon">
+    <link href="/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+</head>
+
+<body class="d-flex flex-column h-100">
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <img src="/img/favicontextmuted.png" alt="" width="30" class="favicontopleft">
+            <a class="navbar-brand" href="/index.html">Super Dog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/app.html">The App</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/code.html">The Code</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://dickjiang.netlify.app/" target="_blank">About Me</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-shrink-0" id="content">
+        <div class="container col-xxl-8 px-4 py-5 mt-5">
+            <h2 class="border-1 border-bottom border-dark">The Code</h2>
+            <div class="row">
+                <div class="col" id="codeCol">
+                    <pre>
+                        <code class="language-javascript line-numbers">
+                            // events is an array that is set up with preset objects.
+                            let events = [{
+                                event: "ComicCon",
+                                city: "New York",
+                                state: "New York",
+                                attendance: 240000,
+                                date: "6/01/2017",
+                            }, {
+                                event: "ComicCon",
+                                city: "New York",
+                                state: "New York",
+                                attendance: 250000,
+                                date: "6/01/2018",
+                            }, {
+                                event: "ComicCon",
+                                city: "New York",
+                                state: "New York",
+                                attendance: 257000,
+                                date: "6/01/2019",
+                            }, {
+                                event: "ComicCon",
+                                city: "San Diego",
+                                state: "California",
+                                attendance: 130000,
+                                date: "6/01/2017",
+                            }, {
+                                event: "ComicCon",
+                                city: "San Diego",
+                                state: "California",
+                                attendance: 140000,
+                                date: "6/01/2018",
+                            }, {
+                                event: "ComicCon",
+                                city: "San Diego",
+                                state: "California",
+                                attendance: 150000,
+                                date: "6/01/2019",
+                            }, {
+                                event: "HeroesCon",
+                                city: "Charlotte",
+                                state: "North Carolina",
+                                attendance: 40000,
+                                date: "6/01/2017",
+                            }, {
+                                event: "HeroesCon",
+                                city: "Charlotte",
+                                state: "North Carolina",
+                                attendance: 45000,
+                                date: "6/01/2018",
+                            }, {
+                                event: "HeroesCon",
+                                city: "Charlotte",
+                                state: "North Carolina",
+                                attendance: 50000,
+                                date: "6/01/2019",
+                            },];
+
+                            // filtedEvent is a placeholder that holds events for future code
+                            let filteredEvents = events;
+
+                            // this is made so that the webpage can onload the functions as one whole wrapper function
+                            function displayAllData() {
+                                displayDropDown();
+                                displayEvents();
+                                buildDropDown();
+                            }
+
+                            // saveEventData is a function that adds another object to the array
+                            function saveEventData() {
+
+                                // this takes the current array in the local storage and sets it to currentEvents
+                                let currentEvents = JSON.parse(localStorage.getItem("eventsArray")) || events;
+
+                                // this sets up a new object so you can put values to it
+                                let newObject = {};
+
+                                // this puts the name and city for the event and saved them as part of an object
+                                newObject["event"] = document.getElementById("newEventName").value;
+                                newObject["city"] = document.getElementById("newEventCity").value;
+
+                                // this sets the variable state as the name and not the value or the acronym
+                                let state = document.getElementById("newEventState");
+                                newObject["state"] = state.options[state.selectedIndex].text;
+
+                                // this sets the attendance as an integer and not a string thats attached to the value
+                                newObject["attendance"] = parseInt(document.getElementById("newEventAttendance").value);
+
+                                // this takes the date and puts it in the same format as the others on the webpage
+                                let eventDate = document.getElementById("newEventDate").value;
+                                let eventDate2 = `${eventDate} 00:00`
+                                newObject["date"] = new Date(eventDate2).toLocaleDateString();
+
+                                // this pushes the object to the array and saves to the localStorage
+                                currentEvents.push(newObject);
+                                localStorage.setItem("eventsArray", JSON.stringify(currentEvents));
+
+                                // this runs the function that runs all the other display functions
+                                displayAllData();
+                            }
+
+                            // display the events
+                            function displayEvents() {
+
+                                // this sets the tableBody as the id of the table that is to be displayed
+                                let tableBody = document.getElementById("results");
+
+                                // this grabs the template in the html and sets it to a variable
+                                let templateRow = document.getElementById("sdTemplate");
+
+                                // this makes sure the tableBody is empty before putting things in
+                                tableBody.innerHTML = '';
+
+                                // this makes currentEvents equal the events stored in the localStorage and 
+                                // if there isn't anything
+                                // sets currentEvents to the global array
+                                let currentEvents = JSON.parse(localStorage.getItem("eventsArray"));
+                                if (currentEvents == null) {
+                                    currentEvents = events;
+                                }
+
+                                // this runs through every element stored in the array
+                                for (let i = 0; i &lt; currentEvents.length; i++) {
+
+                                    // grabs the template
+                                    let tableRow = document.importNode(templateRow.content, true);
+
+                                    // grabs on the columns in the template
+                                    let rowCols = tableRow.querySelectorAll("td");
+
+                                    // sets a different value of a single object in different columns
+                                    rowCols[0].textContent = currentEvents[i].event;
+                                    rowCols[1].textContent = currentEvents[i].city;
+                                    rowCols[2].textContent = currentEvents[i].state;
+                                    rowCols[3].textContent = currentEvents[i].attendance;
+                                    rowCols[4].textContent = currentEvents[i].date;
+
+                                    tableBody.appendChild(tableRow);
+                                }
+                            }
+
+                            function displayDropDown() {
+
+                                // creates variables to be used and set to be compared to other attributes in the array
+                                let totalAttendance = 0;
+                                let leastAttended = filteredEvents[0].attendance;
+                                let mostAttended = filteredEvents[0].attendance;
+
+                                // for every element in the array, it goes through and checks
+                                for (let i = 0; i &lt; filteredEvents.length; i++) {
+
+                                    // this adds every attendance value in the array to a total
+                                    totalAttendance += filteredEvents[i].attendance;
+
+                                    // this checks if the array value is bigger and smaller than the stored values
+                                    if (filteredEvents[i].attendance >= mostAttended) {
+                                        mostAttended = filteredEvents[i].attendance;
+                                    } else {
+                                        mostAttended = mostAttended;
+                                    }
+                                    if (filteredEvents[i].attendance &lt;= leastAttended) {
+                                        leastAttended = filteredEvents[i].attendance;
+                                    } else {
+                                        leastAttended = leastAttended;
+                                    }
+                                }
+
+                                // this gives us the average using the total and divide it by the array length
+                                let averageAttendance = totalAttendance / filteredEvents.length;
+
+                                // this sets the values as strings back into the html
+                                document.getElementById("total").innerHTML = totalAttendance.toLocaleString();
+                                document.getElementById("most").innerHTML = mostAttended.toLocaleString();
+                                document.getElementById("least").innerHTML = leastAttended.toLocaleString();
+                                document.getElementById("average").innerHTML = averageAttendance.toLocaleString(
+                                    undefined, {
+                                        minimumFractionDigits: 0,
+                                        maximumFractionDigits: 0,
+                                    }
+                                 );
+                            }
+
+                            // this clears the localStorage and refreshes the page
+                            function clearData() {
+                                localStorage.clear();
+                                location.reload();
+                            }
+
+                            // this checks through every city type and displays them on the webpage as a dropdown
+                            function getEvents(cityType) {
+                                let city = cityType.getAttribute("data-string");
+                                let currentEvents = JSON.parse(localStorage.getItem("eventsArray")) || events;
+                                filteredEvents = currentEvents;
+
+                                // this changes the header and filters out the array based on the city type you chose
+                                document.getElementById("statsHeader").innerHTML = `Stats For ${city} Events`;
+                                if (city != "All") {
+                                    filteredEvents = currentEvents.filter(function (item) {
+                                        if (item.city == city) {
+                                            return item;
+                                        }
+                                    });
+                                }
+                                displayDropDown();
+                            }
+
+                            // this builds the dropdown menu
+                            function buildDropDown() {
+
+                                let eventDD = document.getElementById("eventDropDown");
+                                eventDD.innerHTML = "";
+
+                                let template = document.getElementById("cityDD-template");
+
+                                curEvents = JSON.parse(localStorage.getItem("eventsArray"));
+                                if (curEvents == null) {
+                                    curEvents = events;
+                                }
+
+                                // this goes through every event and pull out the city
+                                let distinctEvents = [...new Set(curEvents.map((events) => events.city))];
+                                let ddItemNode = document.importNode(template.content, true);
+
+                                // this pulls from the anchor element in the html and then sets the pick all option
+                                ddItem = ddItemNode.querySelector("a");
+                                ddItem.setAttribute("data-string", "All");
+                                ddItem.textContent = "All";
+                                eventDD.appendChild(ddItem);
+
+                                // this then goes through every distinct city and sets 
+                                // it in the dropdown list to be selected
+                                for (var i = 0; i &lt; distinctEvents.length; i++) {
+                                    ddItemNode = document.importNode(template.content, true);
+                                    ddItem = ddItemNode.querySelector("a");
+                                    ddItem.setAttribute("data-string", distinctEvents[i]);
+                                    ddItem.textContent = distinctEvents[i];
+                                    eventDD.appendChild(ddItem);
+                                }
+                            }
+                        </code>
+                    </pre>
+                </div>
+                <div class="col-lg-4 col-sm-12" id="explainCol">
+                    <p>The code is seperated into 7 functions.</p>
+                    <h5>displayAllData()</h5>
+                    <p>This is a wrapper function that is to be loaded onto the website on load. This
+                        starts up <strong>displayDropDown</strong>, <strong>displayEvents</strong>, and
+                        <strong>buildDropDown</strong>.</p>
+                    <h5>saveEventData())</h5>
+                    <p>This function takes the event array in <strong>localStorage</strong> and takes variables from the
+                        html and
+                        sets them as a new object of a single item and then pushes it into the event array and then runs
+                        <strong>displayAllData</strong></p>
+                    <h5>displayEvents()</h5>
+                    <p> This function takes the results element and the sdTemplate from the html clears the webpage and
+                        using the template
+                        they will fill the table with the different values of each object and then display it to the
+                        webpage.</p>
+                    <h5>displayDropDown()</h5>
+                    <p> This function takes a filtered array of events that comes from <strong>buildDropDown</strong> when called
+                    or the base events array and finds the total and average attendance and the least and most attended for their corresponding
+                    cities or in general and display it to the website. </p>
+                    <h5>clearData()</h5>
+                    <p>This function clears the local storage so the webpage resets to the default event array and then the website is reloaded to update the table.</p>
+                    <h5>getEvents()</h5>
+                    <p>This grabs the city types from the array and filters it based on what city you choose and then runs <strong>displayDropDown</strong> to find the stats for that 
+                        specific city.
+                    </p>
+                    <h5>buildDropDown()</h5>
+                    <p>This function grabs the dropdown menu and the citydd template from the html and then goes through every event in the array and find 
+                        every distinct city and add it to a list that shows up when you click on the dropdown arrow. 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container-fluid text-center text-muted">
+            <div class="row">
+                <div class="col">
+                    &copy2021 <span class="text-muted">Dick Jiang | djjiang708405@gmail.com</span>
+                </div>
+                <div class="col">
+                    <img src="/img/favicontextmuted.png" alt="" width="30">
+                    <span class="text-light text-uppercase">Dick Jiang</span>
+                </div>
+                <div class="col">
+                    <a href="https://www.linkedin.com/in/dick-jiang-362685216/" target="_blank"><i
+                            class="fab fa-linkedin fa-2x text-linkedin"></i></a>
+                    <a href="https://github.com/Tyransaurus" target="_blank"><i
+                            class="fab fa-github fa-2x text-purple"></i></a>
+                    <a href="https://twitter.com/DickJiang3" target="_blank"><i
+                            class="fab fa-twitter fa-2x text-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+    </script>
+    <script src="/js/prism.js"></script>
+    <script src="/js/site.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+        integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="/js/all.min.js"></script>
+</body>
+
+</html>
