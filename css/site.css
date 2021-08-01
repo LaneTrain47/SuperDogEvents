@@ -12,35 +12,16 @@ main>.container {
     margin: 1em;
 }
 
-.color-LinkedInBlue {
-    color: #1163bf
-}
-
-.color-YouTubeRed {
-    color: #ff0a03
-}
-
-.color-TwitterBlue {
-    color: #1da1f3
-}
-
-.color-gitHubPurple {
-    color: #7a319a
-}
-
-.color-CoderFoundryOrange {
-    color: #ff993b
-}
-
-.color-JavaScriptYellow {
-    color: #f7df1e
+.color-SuperDogRed {
+    color: #ff0f18
 }
 
 .background-color {
-    background-color: #f7df1e;
+    background-color: #ff0f18;
+    color: #fcfd64
 }
 
 .background-color:hover {
-    background-color: black;
-    color: #f7df1e;
+    background-color: #fcfd64;
+    color: #ff0f18;
 }
