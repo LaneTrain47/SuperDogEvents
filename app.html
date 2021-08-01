@@ -16,15 +16,15 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="d-flex flex-column h-100" style="background-color:lightgray">
+<body class="d-flex flex-column h-100 gradient color: text-white">
 
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <div class="container-fluid">
-                <img src="/img/AppIcon-small.png" alt="">
-                <a class="navbar-brand" href="index.html">SuperDog Events</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <div class="container-fluid">
+            <img src="/img/AppIcon-small.png" alt="">
+            <a class="navbar-brand" href="index.html">SuperDog Events</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarCollapse">
                 <ul class="navbar-nav me-auto mb-2 mb-md-0">
@@ -44,31 +44,39 @@
             </div>
         </div>
     </nav>
-
-
-
-
-
-
-
-
-
     <main class="flex-shrink-0">
-        <div class="container">
-            <h1 class="mt-5">Template with dark fixed navbar and sticky footer</h1>
-            <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and
-                CSS. A fixed navbar has been added with padding-top: 60px; on the main > .container.</p>
+
+
+        <div class="container-fluid mt-5">
+            <div class="logoContainer">
+                <div class="row mt-5">
+                    <div class="col-6">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-secondary">Pick a Location</button>
+                            <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <div id="eventDropdown" class="dropdown-menu">
+                                <!--Template for dropdown-->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <img src="/img/AppLogo.png" alt="SuperDog" class="img-fluid">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+
+                    </div>
+                </div>
+            </div>
+
         </div>
+
+
     </main>
-
-
-
-
-
-
-
-
-    
     <footer class="footer mt-auto py-3 bg-dark">
         <div class="container-fluid text-center text-light">
             <div class="row row-cols-1 row-cols-lg-3">
@@ -86,7 +94,7 @@
                             data-inline="false" style="color: #7a319a"></span></a>
                     <a href="#" target="_blank"><span class="iconify" data-icon="logos:twitter"
                             data-inline="false"></span></a>
-                 </div>
+                </div>
             </div>
         </div>
     </footer>

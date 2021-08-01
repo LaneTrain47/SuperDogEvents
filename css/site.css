@@ -25,3 +25,20 @@ main>.container {
     background-color: #fcfd64;
     color: #ff0f18;
 }
+
+.logoContainer {
+    padding: 20px;
+}
+
+
+.gradient {
+    background: hsla(218, 85%, 74%, 1);
+
+    background: linear-gradient(90deg, hsla(218, 85%, 74%, 1) 0%, hsla(251, 15%, 58%, 1) 100%);
+
+    background: -moz-linear-gradient(90deg, hsla(218, 85%, 74%, 1) 0%, hsla(251, 15%, 58%, 1) 100%);
+
+    background: -webkit-linear-gradient(90deg, hsla(218, 85%, 74%, 1) 0%, hsla(251, 15%, 58%, 1) 100%);
+
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#82ACF5", endColorstr="#8983A4", GradientType=1);
+}
