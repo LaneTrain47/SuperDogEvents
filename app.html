@@ -16,8 +16,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="d-flex flex-column h-100 gradient color: text-white">
-
+<body onload="buildDropdown()" class="d-flex flex-column h-100 gradient color: text-white">
     <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
         <div class="container-fluid">
             <img src="/img/AppIcon-small.png" alt="">
@@ -45,8 +44,6 @@
         </div>
     </nav>
     <main class="flex-shrink-0">
-
-
         <div class="container-fluid mt-5">
             <div class="logoContainer">
                 <div class="row mt-5">
@@ -54,25 +51,36 @@
                         <div class="btn-group">
                             <button type="button" class="btn btn-secondary">Pick a Location</button>
                             <button type="button" class="btn btn-secondary dropdown-toggle dropdown-toggle-split"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="sr-only">Toggle Dropdown</span>
                             </button>
                             <div id="eventDropdown" class="dropdown-menu">
-                                <!--Template for dropdown-->
-                                <a class="dropdown-item" onclick="" data-string="New York">New York</a>
-                                <a class="dropdown-item" onclick="" data-string="California">California</a>
-                                <a class="dropdown-item" onclick="" data-string="Tennessee">Tennessee</a>
-                                <a class="dropdown-item" onclick="" data-string="Maryland">Maryland</a>
-                                <a class="dropdown-item" onclick="" data-string="North Carolina">North Carolina</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" onclick="" data-string="All">All</a>
-
-
-
-
-
-
                             </div>
+                            <table class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th colspan="2" id="statsHeader"></th>Stats for All Events</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td> Total of all Donations</td>
+                                        <td id="donationTotal">100</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Average Amount Donated</td>
+                                        <td id="donationAverage">100</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Highest Donation Total</td>
+                                        <td id="donationHighest">100</td>
+                                    </tr>
+                                    <tr>
+                                        <td> Lowest Donation Total</td>
+                                        <td id="donationLowest">100</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="col-6">
