@@ -62,19 +62,14 @@ let filteredEvents = events;
 //A dropdown of specific cities
 function buildDropdown() {
     let eventDropdown = document.getElementById("eventDropdown");
-
     let distinctEvents = [...new Set(events.map(event => event.city))];
-
     let linkHTMLEnd = '<div class="dropdown-divider"></div><a class="dropdown-item" onclick="getEvents(this)" data-string="All">All</a>';
     let resultHTML = "";
-
     for (let i = 0; i < distinctEvents.length; i++) {
         resultHTML += `<a class="dropdown-item" onclick="getEvents(this)" data-string="${distinctEvents[i]}">${distinctEvents[i]}</a>`;
     }
-
     resultHTML += linkHTMLEnd;
     eventDropdown.innerHTML = resultHTML;
-
 }
 
 function getEvents(element) {
@@ -114,12 +109,14 @@ function displayStats() {
 
     average = total / filteredEvents.length;
 
-    document.getElementById("total").innerHTML = total.toLocaleString();
-    document.getElementById("average").innerHTML = total.toLocaleString();
-    document.getElementById("most").innerHTML = total.toLocaleString();
-    document.getElementById("least").innerHTML = total.toLocaleString((undefined, {
-        minimumFractionDigits: 0,
-        maximumFractionDigits: 2
-    }));
+    document.getElementById("donationTotal").innerHTML = total.toLocaleString();
+    document.getElementById("donationAverage").innerHTML = total.toLocaleString();
+    document.getElementById("donationHighest").innerHTML = total.toLocaleString();
+    document.getElementById("donationLowest").innerHTML = total.toLocaleString(
+        /*(undefined, {
+                minimumFractionDigits: 0,
+                maximumFractionDigits: 2
+            })*/
+    );
 
 }
