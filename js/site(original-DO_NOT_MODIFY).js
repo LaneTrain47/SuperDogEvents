@@ -1,65 +1,58 @@
 let events = [{
-        event: 'Awesome Games Done Quick',
-        date: '01/07/2018',
-        location: 'Herndon, VA',
-        season: 'Winter',
-        donations: 2295190
+        event: 'Games Done Quick',
+        city: 'New York',
+        state: 'New York',
+        donations: 2425790,
+        date: "01/06/2019"
     },
-
     {
-        event: 'Summer Games Done Quick',
-        date: '06/24/2018',
-        location: 'Minneapolis, MN',
-        season: 'Summer',
-        donations: 2168913
+        event: 'Games Done Quick',
+        city: 'New York',
+        state: 'New York',
+        donations: 3039569,
+        date: "06/23/2019"
     },
-
     {
-        event: 'Awesome Games Done Quick',
-        date: '01/06/2019',
-        location: 'Rockville, MD',
-        season: 'Winter',
-        donations: 2425790
+        event: 'Games Done Quick',
+        city: 'New York',
+        state: 'New York',
+        donations: 152595,
+        date: "09/27/2019"
     },
-
     {
-        event: 'Summer Games Done Quick',
-        date: '06/23/2019',
-        location: 'Minneapolis, MN',
-        season: 'Summer',
-        donations: 3039596
+        event: 'Games Done Quick',
+        city: 'San Diego',
+        state: 'California',
+        donations: 3164002,
+        date: "01/05/2020"
     },
-
     {
-        event: 'Awesome Games Done Quick',
-        date: '01/05/2020',
-        location: 'Orlando, FL',
-        season: 'Winter',
-        donations: 3164002
+        event: 'Games Done Quick',
+        city: 'San Diego',
+        state: 'California',
+        donations: 403631,
+        date: "04/17/2020"
     },
-
     {
-        event: 'Summer Games Done Quick',
-        date: '08/16/2020',
-        location: 'Virtual',
-        season: 'Summer',
-        donations: 2345785
+        event: 'Games Done Quick',
+        city: 'San Diego',
+        state: 'California',
+        donations: 2345785,
+        date: "08/16/2020"
     },
-
     {
-        event: 'Awesome Games Done Quick',
-        date: '01/03/2021',
-        location: 'Virtual',
-        season: 'Winter',
-        donations: 27396121
+        event: 'Games Done Quick',
+        city: 'Charlotte',
+        state: 'North Carolina',
+        donations: 2739612,
+        date: "01/03/2021"
     },
-
     {
-        event: 'Summer Games Done Quick',
-        date: '07/04/2021',
-        location: 'Virtual',
-        season: 'Summer',
+        event: 'Games Done Quick',
+        city: 'Charlotte',
+        state: 'North Carolina',
         donations: 2927667,
+        date: "07/04/2021"
     },
 ];
 
