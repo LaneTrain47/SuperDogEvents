@@ -1,65 +1,65 @@
 let events = [{
         event: 'Awesome Games Done Quick',
-        date: '01/07/2018',
+        date: 'January 7-14',
+        year: '2018',
         location: 'Herndon, VA',
-        season: 'Winter',
-        donations: 2295190
+        donations: 2295190.66
     },
 
     {
         event: 'Summer Games Done Quick',
-        date: '06/24/2018',
+        date: 'June 24-30',
+        year: '2018',
         location: 'Minneapolis, MN',
-        season: 'Summer',
-        donations: 2168913
+        donations: 2168913.51
     },
 
     {
         event: 'Awesome Games Done Quick',
-        date: '01/06/2019',
+        date: 'January 6-12',
+        year: '2019',
         location: 'Rockville, MD',
-        season: 'Winter',
-        donations: 2425790
+        donations: 2425790.50
     },
 
     {
         event: 'Summer Games Done Quick',
-        date: '06/23/2019',
+        date: 'June 23-29',
+        year: '2019',
         location: 'Minneapolis, MN',
-        season: 'Summer',
-        donations: 3039596
+        donations: 3039596.07
     },
 
     {
         event: 'Awesome Games Done Quick',
-        date: '01/05/2020',
+        date: 'January 5-11',
+        year: '2020',
         location: 'Orlando, FL',
-        season: 'Winter',
-        donations: 3164002
+        donations: 3164002.06
     },
 
     {
         event: 'Summer Games Done Quick',
-        date: '08/16/2020',
+        date: 'August 16-22',
+        year: '2020',
         location: 'Virtual',
-        season: 'Summer',
-        donations: 2345785
+        donations: 2345785.57
     },
 
     {
         event: 'Awesome Games Done Quick',
-        date: '01/03/2021',
+        date: 'January 3-9',
+        year: '2021',
         location: 'Virtual',
-        season: 'Winter',
-        donations: 27396121
+        donations: 2739612.05
     },
 
     {
         event: 'Summer Games Done Quick',
-        date: '07/04/2021',
+        date: 'July 4-10',
+        year: '2021',
         location: 'Virtual',
-        season: 'Summer',
-        donations: 2927667,
+        donations: 2927667.01
     },
 ];
 
@@ -69,7 +69,7 @@ let filteredEvents = events;
 //A dropdown of specific cities
 function buildDropdown() {
     let eventDropdown = document.getElementById("eventDropdown");
-    let distinctEvents = [...new Set(events.map(event => event.city))];
+    let distinctEvents = [...new Set(events.map(event => event.year))];
     let linkHTMLEnd = '<div class="dropdown-divider"></div><a class="dropdown-item" onclick="getEvents(this)" data-string="All">All</a>';
     let resultHTML = "";
     for (let i = 0; i < distinctEvents.length; i++) {
@@ -80,12 +80,12 @@ function buildDropdown() {
 }
 
 function getEvents(element) {
-    let city = element.getAttribute("data-string");
+    let year = element.getAttribute("data-string");
     filteredEvents = events;
-    document.getElementById("statsHeader").innerHTML = `Stats for ${city} Events`;
-    if (city != 'All') {
+    document.getElementById("statsHeader").innerHTML = `Stats for ${year} Events`;
+    if (year != 'All') {
         filteredEvents = events.filter(function (item) {
-            if (item.city == city) {
+            if (item.year == year) {
                 return item;
             }
         })
@@ -119,11 +119,6 @@ function displayStats() {
     document.getElementById("donationTotal").innerHTML = total.toLocaleString();
     document.getElementById("donationAverage").innerHTML = total.toLocaleString();
     document.getElementById("donationHighest").innerHTML = total.toLocaleString();
-    document.getElementById("donationLowest").innerHTML = total.toLocaleString(
-        /*(undefined, {
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 2
-            })*/
-    );
+    document.getElementById("donationLowest").innerHTML = total.toLocaleString();
 
 }
