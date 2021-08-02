@@ -62,10 +62,10 @@ let filteredEvents = events;
 //A dropdown of specific cities
 function buildDropdown() {
     let eventDropdown = document.getElementById("eventDropdown");
-    //Distinct events for the events array
+
     let distinctEvents = [...new Set(events.map(event => event.city))];
 
-    let linkHTMLEnd = '<div class="dropdown-divider"></div><a class="dropdown-item" onclick="getEvents(this)" data-string="All" >All</a>';
+    let linkHTMLEnd = '<div class="dropdown-divider"></div><a class="dropdown-item" onclick="getEvents(this)" data-string="All">All</a>';
     let resultHTML = "";
 
     for (let i = 0; i < distinctEvents.length; i++) {
@@ -74,5 +74,52 @@ function buildDropdown() {
 
     resultHTML += linkHTMLEnd;
     eventDropdown.innerHTML = resultHTML;
+
+}
+
+function getEvents(element) {
+    let city = element.getAttribute("data-string");
+    filteredEvents = events;
+    document.getElementById("statsHeader").innerHTML = `Stats for ${city} Events`;
+    if (city != 'All') {
+        filteredEvents = events.filter(function (item) {
+            if (item.city == city) {
+                return item;
+            }
+        })
+    }
+
+    displayStats();
+}
+
+function displayStats() {
+    let total = 0;
+    let average = 0;
+    let most = 0;
+    let least = -1;
+    let currentDonations = 0;
+
+    for (let i = 0; i < filteredEvents.length; i++) {
+        currentDonations = filteredEvents[i].donations;
+        total += currentDonations;
+
+        if (most < currentDonations) {
+            most = currentDonations;
+        }
+
+        if (least > currentDonations || least < 0) {
+            least = currentDonations;
+        }
+    }
+
+    average = total / filteredEvents.length;
+
+    document.getElementById("total").innerHTML = total.toLocaleString();
+    document.getElementById("average").innerHTML = total.toLocaleString();
+    document.getElementById("most").innerHTML = total.toLocaleString();
+    document.getElementById("least").innerHTML = total.toLocaleString((undefined, {
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+    }));
 
 }
