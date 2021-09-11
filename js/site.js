@@ -66,7 +66,8 @@ let events = [{
 //The default display for all events 
 let filteredEvents = events;
 
-//A dropdown of specific cities
+
+//A detailed dropdown of various events
 function buildDropdown() {
     let eventDropdown = document.getElementById("eventDropdown");
     let distinctEvents = [...new Set(events.map(event => event.year))];
@@ -77,6 +78,7 @@ function buildDropdown() {
     }
     resultHTML += linkHTMLEnd;
     eventDropdown.innerHTML = resultHTML;
+    displayData();
 }
 
 function getEvents(element) {
@@ -92,6 +94,26 @@ function getEvents(element) {
     }
 
     displayStats();
+
+}
+
+function displayData() {
+    const template = document.getElementById("DataTemplate");
+    const eventsTableBody = document.getElementById("EventsTableBody");
+    eventsTableBody.innerHTML = "";
+    for (let i = 0; i < events.length; i++) {
+        const eventsRow = document.importNode(template.content, true);
+
+        let EventColumns = eventsRow.querySelectorAll("td");
+        eventsRow.getElementById("EventName").textContent = events[i].event;
+        eventsRow.getElementById("Location").textContent = events[i].location;
+        eventsRow.getElementById("Date").textContent = events[i].date + ", " + events[i].year;
+        eventsRow.getElementById("Donations").textContent = "$" + events[i].donations.toLocaleString(undefined, {
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+        eventsTableBody.appendChild(eventsRow);
+    }
 }
 
 function displayStats() {
@@ -116,9 +138,21 @@ function displayStats() {
 
     average = total / filteredEvents.length;
 
-    document.getElementById("donationTotal").innerHTML = total.toLocaleString();
-    document.getElementById("donationAverage").innerHTML = total.toLocaleString();
-    document.getElementById("donationHighest").innerHTML = total.toLocaleString();
-    document.getElementById("donationLowest").innerHTML = total.toLocaleString();
+    document.getElementById("donationTotal").innerHTML = "$" + total.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    document.getElementById("donationAverage").innerHTML = "$" + average.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    document.getElementById("donationHighest").innerHTML = "$" + most.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    document.getElementById("donationLowest").innerHTML = `$${least.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    })}`;
 
 }
