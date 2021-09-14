@@ -46,10 +46,237 @@
     </nav>
 
     <main class="flex-shrink-0">
-        <div class="container">
-            <h1 class="mt-5">Template with dark fixed navbar and sticky footer</h1>
-            <p class="lead">Pin a footer to the bottom of the viewport in desktop browsers with this custom HTML and
-                CSS. A fixed navbar has been added with padding-top: 60px; on the main > .container.</p>
+        <div class="container mt-3">
+            <div class="row">
+                <div class="col-8">
+                    <div class="row">
+                        <div class="col border-bottom border-dark text-center">
+                            <h1>How does SuperDog Events work?</h1>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col mt-3">
+                            <pre><code class="language-javascript">
+                                    let events = [{
+                                        event: 'Awesome Games Done Quick',
+                                        date: 'January 7-14',
+                                        year: '2018',
+                                        location: 'Herndon, VA',
+                                        donations: 2295190.66
+                                    },
+                                    
+                                    {
+                                        event: 'Summer Games Done Quick',
+                                        date: 'June 24-30',
+                                        year: '2018',
+                                        location: 'Minneapolis, MN',
+                                        donations: 2168913.51
+                                    },
+                                    
+                                    {
+                                        event: 'Awesome Games Done Quick',
+                                        date: 'January 6-12',
+                                        year: '2019',
+                                        location: 'Rockville, MD',
+                                        donations: 2425790.50
+                                    },
+                                    
+                                    {
+                                        event: 'Summer Games Done Quick',
+                                        date: 'June 23-29',
+                                        year: '2019',
+                                        location: 'Minneapolis, MN',
+                                        donations: 3039596.07
+                                    },
+                                    
+                                    {
+                                        event: 'Awesome Games Done Quick',
+                                        date: 'January 5-11',
+                                        year: '2020',
+                                        location: 'Orlando, FL',
+                                        donations: 3164002.06
+                                    },
+                                    
+                                    {
+                                        event: 'Summer Games Done Quick',
+                                        date: 'August 16-22',
+                                        year: '2020',
+                                        location: 'Virtual',
+                                        donations: 2345785.57
+                                    },
+                                    
+                                    {
+                                        event: 'Awesome Games Done Quick',
+                                        date: 'January 3-9',
+                                        year: '2021',
+                                        location: 'Virtual',
+                                        donations: 2739612.05
+                                    },
+                                    
+                                    {
+                                        event: 'Summer Games Done Quick',
+                                        date: 'July 4-10',
+                                        year: '2021',
+                                        location: 'Virtual',
+                                        donations: 2927667.01
+                                    },
+                                    ];
+                                    
+                                    //The default display for all events 
+                                    let filteredEvents = events;
+                                    
+                                    
+                                    //A detailed dropdown of various events
+                                    function buildDropdown() {
+                                    let eventDropdown = document.getElementById("eventDropdown");
+                                    let distinctEvents = [...new Set(events.map(event => event.year))];
+                                    let linkHTMLEnd = '&lt;div class="dropdown-divider">&lt;/div>&lt;a class="dropdown-item" onclick="getEvents(this)" data-string="All">All&lt;/a>';
+                                    let resultHTML = "";
+                                    for (let i = 0; i &lt; distinctEvents.length; i++) {
+                                        resultHTML += `&lt;a class="dropdown-item" onclick="getEvents(this)" data-string="${distinctEvents[i]}">${distinctEvents[i]}&lt;/a>`;
+                                    }
+                                    resultHTML += linkHTMLEnd;
+                                    eventDropdown.innerHTML = resultHTML;
+                                    displayData();
+                                    }
+                                    
+                                    function getEvents(element) {
+                                    let year = element.getAttribute("data-string");
+                                    filteredEvents = events;
+                                    document.getElementById("statsHeader").innerHTML = `Stats for ${year} Events`;
+                                    if (year != 'All') {
+                                        filteredEvents = events.filter(function (item) {
+                                            if (item.year == year) {
+                                                return item;
+                                            }
+                                        })
+                                    }
+                                    
+                                    displayStats();
+                                    
+                                    }
+                                    
+                                    function displayData() {
+                                    const template = document.getElementById("DataTemplate");
+                                    const eventsTableBody = document.getElementById("EventsTableBody");
+                                    eventsTableBody.innerHTML = "";
+                                    for (let i = 0; i &lt; events.length; i++) {
+                                        const eventsRow = document.importNode(template.content, true);
+                                    
+                                        let EventColumns = eventsRow.querySelectorAll("td");
+                                        eventsRow.getElementById("EventName").textContent = events[i].event;
+                                        eventsRow.getElementById("Location").textContent = events[i].location;
+                                        eventsRow.getElementById("Date").textContent = events[i].date + ", " + events[i].year;
+                                        eventsRow.getElementById("Donations").textContent = "$" + events[i].donations.toLocaleString(undefined, {
+                                            minimumFractionDigits: 2,
+                                            maximumFractionDigits: 2
+                                        });
+                                        eventsTableBody.appendChild(eventsRow);
+                                    }
+                                    }
+                                    
+                                    function displayStats() {
+                                    let total = 0;
+                                    let average = 0;
+                                    let most = 0;
+                                    let least = -1;
+                                    let currentDonations = 0;
+                                    
+                                    for (let i = 0; i &lt; filteredEvents.length; i++) {
+                                        currentDonations = filteredEvents[i].donations;
+                                        total += currentDonations;
+                                    
+                                        if (most &lt; currentDonations) {
+                                            most = currentDonations;
+                                        }
+                                    
+                                        if (least > currentDonations || least &lt; 0) {
+                                            least = currentDonations;
+                                        }
+                                    }
+                                    
+                                    average = total / filteredEvents.length;
+                                    
+                                    document.getElementById("donationTotal").innerHTML = "$" + total.toLocaleString(undefined, {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    });
+                                    document.getElementById("donationAverage").innerHTML = "$" + average.toLocaleString(undefined, {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    });
+                                    document.getElementById("donationHighest").innerHTML = "$" + most.toLocaleString(undefined, {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    });
+                                    document.getElementById("donationLowest").innerHTML = `$${least.toLocaleString(undefined, {
+                                        minimumFractionDigits: 2,
+                                        maximumFractionDigits: 2
+                                    })}`;
+                                    
+                                    }
+    </code></pre>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-1"></div>
+                <div class="col-3">
+                    <div class="row mt-5">
+                        <p>The first few lines of code are dedicated to the data that will be fed to a table for
+                            display inside the SuperDog application. This data contains information regarding event
+                            names, locations, dates and donation amounts for video game speed run marathons that raise
+                            money for charity.
+                        </p>
+                        <p></p>
+                        <p>
+                            Next, the aforementioned data is fed to the webpage by way of the establishment of several
+                            variables:
+                        </p>
+                        <li><strong>eventDropdown</strong> sends the requested data to the dropdown menu of the same
+                            name on the webpage when the corresponding button is clicked
+                        </li>
+
+                        <li><strong>distinctEvents</strong> defines a new set of events filtered by year</li>
+
+                        <li><strong>linkHTMLEnd</strong> defines a new set of events absent any filtering, which is to
+                            say that the resulting set will contain all of the events contained in the table</li>
+
+                        <li><strong>resultHTML</strong> defines an empty string into which a filtered result can
+                            be pushed</li>
+                        <p></p>
+                        <p>When the user clicks the filter of their choice, <strong>eventDropdown.innerHTML</strong>
+                            is called upon to push the result via <strong>displayData()</strong> to the table on the
+                            right-hand side of the webpage.
+                        </p>
+                        <p></p>
+                        <p>The <strong>getEvents</strong> function is where the actual filtering of the data takes
+                            place. The user is able to view the donation amounts either by the year in which they
+                            occurred, or by all of the events contained within the entirety of the table.</p>
+                        <p></p>
+                        <p>The <strong>displayData</strong> function is responsible for pushing the event data from the
+                            JavaScript to the table within the application page's HTML. Since the average of the
+                            donation amounts could result in the output of a decimal value longer than two digits,
+                            <strong>minimumFractionDigits</strong> and <strong>maximumFractionDigits</strong> were
+                            included within the function to ensure that the decimal value would always contain two
+                            digits and two digits only. This is obviously the only format that would make sense in the
+                            context of a monetary value.
+                        </p>
+                        <p></p>
+                        <p>Finally, the <strong>displayStats</strong> function first sets a baseline of $0 for the
+                            donation amounts, then loops over each value within the table and compares the respective
+                            values each time through. Once the highest amount within the parameters defined by the user
+                            has been determined, the loop stops running and outputs the result.</p>
+                        <p></p>
+                        <p><strong>toLocaleString</strong> ensures that the resulting calculations contain
+                            commas for easier readability. </p>
+                        <p></p>
+                        <p><strong>average = total / filteredEvents.length</strong> is the logic that enables JavaScript
+                            to arrive at an average donation amount by dividing by the correct number of events
+                            which meet the user's chosen criteria, i.e. by year (divide by 2, as there are only two
+                            events per year within the table) or by all (divided by the total number of events). </p>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -64,12 +291,12 @@
                 <div class="col">
                 </div>
                 <div class="col">
-                    <a href="#" target="_blank"><span class="iconify" data-icon="logos:linkedin-icon"
-                            data-inline="false"></span></a>
-                    <a href="#" target="_blank"><span class="iconify" data-icon="akar-icons:github-fill"
-                            data-inline="false" style="color: #7a319a"></span></a>
-                    <a href="#" target="_blank"><span class="iconify" data-icon="logos:twitter"
-                            data-inline="false"></span></a>
+                    <a href="https://www.linkedin.com/in/matt-lane-ab5588108/" target="_blank"><span class="iconify"
+                            data-icon="logos:linkedin-icon" data-inline="false"></span></a>
+                    <a href="https://github.com/LaneTrain47" target="_blank"><span class="iconify"
+                            data-icon="akar-icons:github-fill" data-inline="false" style="color: #7a319a"></span></a>
+                    <a href="https://twitter.com/LaneTrain47" target="_blank"><span class="iconify"
+                            data-icon="logos:twitter" data-inline="false"></span></a>
                 </div>
             </div>
         </div>
@@ -85,6 +312,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
         integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+
+</html>
+
+<footer class="footer mt-auto py-3 bg-dark">
+    <div class="container-fluid text-center text-light">
+        <div class="row row-cols-1 row-cols-lg-3">
+            <div class="col">
+                &copy2021 <span class="text-light">Matt Lane | <img src="/img/Favicon-small.png" alt="Matt Lane"
+                        class="img-fluid"> | matthewjlane.47@gmail.com
+                </span>
+            </div>
+            <div class="col">
+            </div>
+            <div class="col">
+                <a href="#" target="_blank"><span class="iconify" data-icon="logos:linkedin-icon"
+                        data-inline="false"></span></a>
+                <a href="#" target="_blank"><span class="iconify" data-icon="akar-icons:github-fill" data-inline="false"
+                        style="color: #7a319a"></span></a>
+                <a href="#" target="_blank"><span class="iconify" data-icon="logos:twitter"
+                        data-inline="false"></span></a>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+</script>
+<script src="/js/prism.js"></script>
+<script src="/js/site.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js"
+    integrity="sha512-RXf+QSDCUQs5uwRKaDoXt55jygZZm2V++WUZduaU/Ui/9EGp3f/2KZVahFZBKGH0s774sd3HmrhUy+SgOFQLVQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 </body>
 
